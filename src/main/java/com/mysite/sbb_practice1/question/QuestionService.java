@@ -26,4 +26,11 @@ public class QuestionService {
         }
     }
 
+    public void create(String subject, String content) {
+        Question question = new Question();
+        question.setSubject(subject);
+        question.setContent(content);
+        this.questionRepository.save(question);
+    }
+
 }
