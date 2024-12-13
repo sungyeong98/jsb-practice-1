@@ -1,5 +1,6 @@
 package com.mysite.sbb_practice1.question;
 
+import com.mysite.sbb_practice1.user.SiteUser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Page;
@@ -7,6 +8,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -34,10 +36,12 @@ public class QuestionService {
         }
     }
 
-    public void create(String subject, String content) {
+    public void create(String subject, String content, SiteUser author) {
         Question question = new Question();
         question.setSubject(subject);
         question.setContent(content);
+        question.setCreateDate(LocalDateTime.now());
+        question.setAuthor(author);
         this.questionRepository.save(question);
     }
 
